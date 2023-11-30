@@ -78,8 +78,22 @@ Each session subfolder corresponds to a row of the original matlab table. In eac
 
 ## Matlab
 
-[...describe matlab code...]
+The `main.m` script takes as input the files:
+
+```bash
+./data/raw/quaddata_bdata_big.mat
+./data/raw/quaddata_sdata_big.mat
+```
+
+and writes the preprocessed data in the folders:
+
+```bash
+./data/processed/behaviour
+./data/processed/neural
+```
+
+### Notes
 
 The preprocessing excludes:
-- the `graph` column of bdata
+- the `graph` column of bdata_big table
 
