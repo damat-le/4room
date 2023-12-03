@@ -76,16 +76,9 @@ data/processed/neural
 Each session subfolder corresponds to a row of the original matlab table. In each session subfolder there are as many subfolders as the number of cells in the session. Each cell subfolder contains as many .csv files as the number of columns in the table.
 
 
-## Data Processing
+## Matlab
 
-In order to process correctly the data, the following steps must be followed:
-1. Have the raw data in the folder `./data/raw`
-2. Run the `src/main.m` script using matlab
-3. Run the `src/fix_folders.sh` script using bash
-
-### `main.m` script
-
-The `main.m` script reads the files:
+The `main.m` script takes as input the files:
 
 ```bash
 ./data/raw/quaddata_bdata_big.mat
@@ -97,52 +90,6 @@ and writes the preprocessed data in the folders:
 ```bash
 ./data/processed/behaviour
 ./data/processed/neural
-```
-
-### `fix_folders.sh` script
-
-The `fix_folders.sh` script transform the folder structure of the preprocessed data.
-
-The new structure is:
-
-```bash
-data/newstruct_processed/
-├── rat1
-│   ├── session1
-│   │   ├── behaviour
-│   │   └── neural
-│   │       ├── cell1
-│   │       .
-│   │       .
-│   │       └── cellM
-│   .
-│   .
-│   └── sessionN
-│       ├── behaviour
-│       └── neural
-│           ├── cell1
-│           .
-│           .
-│           └── cellM
-.
-.
-└── ratL
-    ├── session1
-    │   ├── behaviour
-    │   └── neural
-    │       ├── cell1
-    │       .
-    │       .
-    │       └── cellM
-    .
-    .
-    └── sessionN
-        ├── behaviour
-        └── neural
-            ├── cell1
-            .
-            .
-            └── cellM
 ```
 
 ### Notes
