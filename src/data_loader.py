@@ -93,3 +93,22 @@ class DataLoader:
 
                 out_dict[filename[:-4]] = attr_value
         return _hash, out_dict
+
+if __name__=='__main__':
+    import json
+    import pickle
+    from argparse import ArgumentParser
+
+    parser = ArgumentParser()
+    parser.add_argument('-c', type=str, required=True, help='path to config file')
+
+    args = parser.parse_args()
+    with open(args.c, "r") as f:
+        c = json.load(f)
+
+    dl = DataLoader(c)
+    dl.load()
+
+    dl.targets.to_csv('data/pickle/info.csv', index=False)
+    with open('data/pickle/data.pickle', 'wb') as f:
+        pickle.dump(dl.data, f)
