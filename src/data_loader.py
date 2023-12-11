@@ -16,7 +16,7 @@ class DataLoader:
     def load(self):
         self.data = self.__load_targets()
     
-    def __build_all_targets(self) -> dict:
+    def __build_all_targets(self) -> pd.DataFrame:
         targets = []
         for path, dirs, files in os.walk(self.root_dir):
             if files:
@@ -42,7 +42,7 @@ class DataLoader:
         
         return df
     
-    def __filter_targets(self, df) -> dict:
+    def __filter_targets(self, df) -> pd.DataFrame:
         if self.rat_names is None:
             self.rat_names = df.rat.unique()
         if self.session_names is None:
@@ -55,7 +55,7 @@ class DataLoader:
             df.data_type.isin(self.data_types)
             ]
     
-    def __get_targets(self) -> dict:
+    def __get_targets(self) -> pd.DataFrame:
         df = self.__build_all_targets()
         df = self.__filter_targets(df)
         return df
@@ -95,6 +95,9 @@ class DataLoader:
         return _hash, out_dict
 
 if __name__=='__main__':
+
+    # CONVERT DATA FROM SPARSE .CSV FILES TO PICKLE
+
     import json
     import pickle
     from argparse import ArgumentParser
@@ -109,6 +112,6 @@ if __name__=='__main__':
     dl = DataLoader(c)
     dl.load()
 
-    dl.targets.to_csv('data/pickle/info.csv', index=False)
+    dl.targets.to_csv('data/pickle/registry.csv', index=False)
     with open('data/pickle/data.pickle', 'wb') as f:
         pickle.dump(dl.data, f)

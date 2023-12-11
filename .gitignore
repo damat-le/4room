@@ -1,5 +1,7 @@
-misc/
+misc/backup_data/
+misc/tmp/
 data/
 .DS_Store
 __pycache__/
 configs/
+.vscode/
